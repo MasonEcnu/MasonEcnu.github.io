@@ -389,6 +389,19 @@
 
           
           
+             <span id="/2018/09/04/hello/" class="leancloud_visitors" data-flag-title="Hello World">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+					<span class="post-meta-item-text">阅读次数&#58;</span>
+               
+				
+				<span class="leancloud-visitors-count"></span>
+                 
+             </span>
+          
 
           
 
@@ -1149,7 +1162,7 @@
           if (results.length > 0) {
             var counter = results[0];
             counter.fetchWhenSave(true);
-            counter.increment("time");
+			
             counter.save(null, {
               success: function(counter) {
                 var $element = $(document.getElementById(url));
@@ -1196,7 +1209,6 @@
       }
     });
   </script>
-
 
 
   

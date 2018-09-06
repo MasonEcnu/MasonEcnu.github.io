@@ -994,7 +994,9 @@
           if (results.length > 0) {
             var counter = results[0];
             counter.fetchWhenSave(true);
-            counter.increment("time");
+			
+				counter.increment("time");
+			
             counter.save(null, {
               success: function(counter) {
                 var $element = $(document.getElementById(url));
@@ -1041,7 +1043,6 @@
       }
     });
   </script>
-
 
 
   
