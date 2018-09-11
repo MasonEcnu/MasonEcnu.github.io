@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="kotlin,设计模式,单例模式," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome, Dear Visitor! 欢迎来到Mason的博客！">
+<meta name="description" content="稍微学过Kotlin的童鞋都应该知道，在Kotlin中可以用object关键字非常方便的实现单例模式（Singleton），具体实现方式不是本文的学习重点。 本文就用最基础的方式，用Kotlin语言来实现单例模式。">
+<meta name="keywords" content="kotlin,设计模式,单例模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="masonecnu.github.io/2018/09/04/Hello/index.html">
+<meta property="og:title" content="kotlin单例模式的实现">
+<meta property="og:url" content="masonecnu.github.io/2018/09/11/Singleton/index.html">
 <meta property="og:site_name" content="Mason&#39;s Blog">
-<meta property="og:description" content="Welcome, Dear Visitor! 欢迎来到Mason的博客！">
+<meta property="og:description" content="稍微学过Kotlin的童鞋都应该知道，在Kotlin中可以用object关键字非常方便的实现单例模式（Singleton），具体实现方式不是本文的学习重点。 本文就用最基础的方式，用Kotlin语言来实现单例模式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-05T12:04:38.759Z">
+<meta property="og:updated_time" content="2018-09-11T12:52:08.343Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome, Dear Visitor! 欢迎来到Mason的博客！">
+<meta name="twitter:title" content="kotlin单例模式的实现">
+<meta name="twitter:description" content="稍微学过Kotlin的童鞋都应该知道，在Kotlin中可以用object关键字非常方便的实现单例模式（Singleton），具体实现方式不是本文的学习重点。 本文就用最基础的方式，用Kotlin语言来实现单例模式。">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="masonecnu.github.io/2018/09/04/Hello/"/>
+  <link rel="canonical" href="masonecnu.github.io/2018/09/11/Singleton/"/>
 
 
 
 
 
-  <title>Hello World | Mason's Blog</title>
+  <title>kotlin单例模式的实现 | Mason's Blog</title>
   
 
 
@@ -312,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="masonecnu.github.io/2018/09/04/Hello/">
+    <link itemprop="mainEntityOfPage" href="masonecnu.github.io/2018/09/11/Singleton/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mason Wu">
@@ -329,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">kotlin单例模式的实现</h1>
         
 
         <div class="post-meta">
@@ -341,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-04T20:03:47+08:00">
-                2018-09-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-11T20:09:35+08:00">
+                2018-09-11
               </time>
             
 
@@ -357,8 +358,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-09-05T20:04:38+08:00">
-                2018-09-05
+              <time title="更新于" itemprop="dateModified" datetime="2018-09-11T20:52:08+08:00">
+                2018-09-11
               </time>
             
           </span>
@@ -376,8 +377,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随笔/" itemprop="url" rel="index">
-                    <span itemprop="name">随笔</span>
+                  <a href="/categories/kotlin/" itemprop="url" rel="index">
+                    <span itemprop="name">kotlin</span>
                   </a>
                 </span>
 
@@ -393,7 +394,7 @@
 
           
           
-             <span id="/2018/09/04/Hello/" class="leancloud_visitors" data-flag-title="Hello World">
+             <span id="/2018/09/11/Singleton/" class="leancloud_visitors" data-flag-title="kotlin单例模式的实现">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -420,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  14 字
+                  1.1k 字
                 </span>
               
 
@@ -436,16 +437,12 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  4 分钟
                 </span>
               
             </div>
           
 
-          
-              <div class="post-description">
-                  <center>Welcome, Dear Visitor! <br>欢迎来到Mason的博客！</center>
-              </div>
           
 
         </div>
@@ -461,10 +458,45 @@
       
 
       
-        <font size="3"><center>Welcome to Mason’s Blog!</center></font>
-
+        <p>稍微学过Kotlin的童鞋都应该知道，在Kotlin中可以用<code>object</code>关键字非常方便的实现单例模式（<code>Singleton</code>），具体实现方式不是本文的学习重点。</p>
+<p>本文就用最基础的方式，用<code>Kotlin</code>语言来实现单例模式。</p>
 <a id="more"></a>
-<font size="3"><center>这是我的第一篇博客！</center></font>
+<h3 id="基础设置"><a href="#基础设置" class="headerlink" title="基础设置"></a>基础设置</h3><p>公共参数及方法：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/11</span></span><br><span class="line"><span class="comment"> * 公共常量及方法</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 计数器</span></span><br><span class="line"><span class="meta">@Volatile</span></span><br><span class="line"><span class="keyword">var</span> sum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 最大线程数</span></span><br><span class="line">const <span class="keyword">val</span> MAX_THREAD_NUM = <span class="number">100000</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 线程休眠时间</span></span><br><span class="line">const <span class="keyword">val</span> MAX_SLEEP_TIME = <span class="number">5000</span>L</span><br><span class="line"></span><br><span class="line"><span class="comment">// 统一测试执行方法</span></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">runDemo</span><span class="params">(clzz: <span class="type">String</span>)</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> start = System.currentTimeMillis()</span><br><span class="line">  (<span class="number">1.</span>.MAX_THREAD_NUM).forEach &#123;</span><br><span class="line">    <span class="keyword">when</span> (clzz) &#123;</span><br><span class="line">      <span class="string">"LazySingleton"</span> -&gt; &#123;</span><br><span class="line">        Thread &#123; LazySingleton.getInstance() &#125;.start()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="string">"SyncLazySingleton"</span> -&gt; &#123;</span><br><span class="line">        Thread &#123; SyncLazySingleton.getInstance() &#125;.start()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="string">"HungrySingleton"</span> -&gt; &#123;</span><br><span class="line">        Thread &#123; HungrySingleton.getInstance() &#125;.start()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="string">"DoubleCheckSingleton"</span> -&gt; &#123;</span><br><span class="line">        Thread &#123; DoubleCheckSingleton.getInstance() &#125;.start()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="string">"EnumSingleton"</span> -&gt; &#123;</span><br><span class="line">        <span class="comment">// 枚举类天生线程安全</span></span><br><span class="line">        Thread &#123; EnumSingleton.INSTANCE &#125;.start()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="string">"StaticInnerSingleton"</span> -&gt; &#123;</span><br><span class="line">        Thread &#123; StaticInnerSingleton.getInstance() &#125;.start()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span> -&gt; &#123;</span><br><span class="line">        println(<span class="string">"Input Error"</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  Thread.sleep(MAX_SLEEP_TIME)</span><br><span class="line">  <span class="keyword">val</span> end = System.currentTimeMillis()</span><br><span class="line">  println(<span class="string">"类：<span class="variable">$clzz</span>, 计数器总和：<span class="variable">$sum</span>, 耗时：<span class="subst">$&#123;end - start - MAX_SLEEP_TIME&#125;</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>测试类<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.junit.Test</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/11</span></span><br><span class="line"><span class="comment"> * 测试类</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestSingleton</span> </span>&#123;</span><br><span class="line">  <span class="meta">@Test</span></span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">test</span><span class="params">()</span></span> &#123;</span><br><span class="line">    <span class="comment">// 单线程懒汉式</span></span><br><span class="line">    runDemo(LazySingleton::<span class="class"><span class="keyword">class</span>.<span class="title">simpleName</span> ?: <span class="type">"Error")</span></span></span><br><span class="line">    <span class="comment">// 同步懒汉式</span></span><br><span class="line">    runDemo(SyncLazySingleton::<span class="class"><span class="keyword">class</span>.<span class="title">simpleName</span> ?: <span class="type">"Error")</span></span></span><br><span class="line">    <span class="comment">// 饿汉式</span></span><br><span class="line">    runDemo(HungrySingleton::<span class="class"><span class="keyword">class</span>.<span class="title">simpleName</span> ?: <span class="type">"Error")</span></span></span><br><span class="line">    <span class="comment">// double-check懒汉式</span></span><br><span class="line">    runDemo(DoubleCheckSingleton::<span class="class"><span class="keyword">class</span>.<span class="title">simpleName</span> ?: <span class="type">"Error")</span></span></span><br><span class="line">    <span class="comment">// 静态内部类</span></span><br><span class="line">    runDemo(StaticInnerSingleton::<span class="class"><span class="keyword">class</span>.<span class="title">simpleName</span> ?: <span class="type">"Error")</span></span></span><br><span class="line">    <span class="comment">// 枚举</span></span><br><span class="line">    runDemo(EnumSingleton::<span class="class"><span class="keyword">class</span>.<span class="title">simpleName</span> ?: <span class="type">"Error")</span></span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="饿汉式"><a href="#饿汉式" class="headerlink" title="饿汉式"></a>饿汉式</h3><blockquote>
+<p>优点：代码实现简单且线程安全<br>缺点：由于实例是在类加载时创建，因此即便该实例不使用也会占用内存空间</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/10</span></span><br><span class="line"><span class="comment"> * 饿汉式：类初始化时创建</span></span><br><span class="line"><span class="comment"> * 优点：简单</span></span><br><span class="line"><span class="comment"> * 缺点：可被反射破坏</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HungrySingleton</span> <span class="keyword">private</span> <span class="keyword">constructor</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">  init &#123;</span><br><span class="line">    sum++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> instance: HungrySingleton = HungrySingleton()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getInstance</span><span class="params">()</span></span>: HungrySingleton &#123;</span><br><span class="line">      <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="懒汉式"><a href="#懒汉式" class="headerlink" title="懒汉式"></a>懒汉式</h3><blockquote>
+<p>优点：代码简单且实现实例延迟创建<br>缺点：多线程并发时，可能会创建出多个实例</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/10</span></span><br><span class="line"><span class="comment"> * 懒汉式：在需要使用到类的实例时，才去创建</span></span><br><span class="line"><span class="comment"> * 优点：简单</span></span><br><span class="line"><span class="comment"> * 缺点：非线程安全，多线程下可能会创建多个实例</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LazySingleton</span> <span class="keyword">private</span> <span class="keyword">constructor</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">  init &#123;</span><br><span class="line">    sum++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> instance: LazySingleton? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getInstance</span><span class="params">()</span></span>: LazySingleton? &#123;</span><br><span class="line">      <span class="comment">// 多线程下，假如此时有多个线程都判断instance == null为true</span></span><br><span class="line">      <span class="comment">// 则都会进入到if代码块中，从而创建多个实例</span></span><br><span class="line">      <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">        instance = LazySingleton()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="同步懒汉式"><a href="#同步懒汉式" class="headerlink" title="同步懒汉式"></a>同步懒汉式</h3><blockquote>
+<p>优点：线程安全的懒汉式<br>缺点：加<code>@Synchronized</code>注解理论上会牺牲部分性能</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/10</span></span><br><span class="line"><span class="comment"> * 同步的懒汉式：多线程安全</span></span><br><span class="line"><span class="comment"> * 原理：在生成实例的方法上加<span class="doctag">@Synchronized</span>注解，相当于Java中的synchronized关键字</span></span><br><span class="line"><span class="comment"> * 缺点：牺牲性能--发现也没牺牲啥性能，难道是我用的方式不对？</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SyncLazySingleton</span> <span class="keyword">private</span> <span class="keyword">constructor</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">  init &#123;</span><br><span class="line">    sum++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> instance: SyncLazySingleton? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Synchronized</span></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getInstance</span><span class="params">()</span></span>: SyncLazySingleton? &#123;</span><br><span class="line">      <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">        instance = SyncLazySingleton()</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="双重检查"><a href="#双重检查" class="headerlink" title="双重检查"></a>双重检查</h3><blockquote>
+<p>优点：线程安全+延迟加载+更少的性能牺牲<br>缺点：不加<code>@Volatile</code>注解时，可能因为<code>JVM</code>的指令重排序导致程序出错</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/10</span></span><br><span class="line"><span class="comment"> * double-check的懒汉式</span></span><br><span class="line"><span class="comment"> * 多线程安全</span></span><br><span class="line"><span class="comment"> * 缺点：指令重排序</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DoubleCheckSingleton</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  init &#123;</span><br><span class="line">    sum++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="meta">@Volatile</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">var</span> instance: DoubleCheckSingleton? = <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getInstance</span><span class="params">()</span></span>: DoubleCheckSingleton? &#123;</span><br><span class="line">      <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">        synchronized(<span class="keyword">this</span>) &#123;</span><br><span class="line">          <span class="keyword">if</span> (instance == <span class="literal">null</span>) &#123;</span><br><span class="line">            instance = DoubleCheckSingleton()</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> instance</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="静态内部类"><a href="#静态内部类" class="headerlink" title="静态内部类"></a>静态内部类</h3><blockquote>
+<p>优点：延迟加载+线程安全+使用时才创建<br>缺点：反射</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/11</span></span><br><span class="line"><span class="comment"> * 静态内部类单例</span></span><br><span class="line"><span class="comment"> * 优点：延迟加载+线程安全+使用时才创建</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticInnerSingleton</span> <span class="keyword">private</span> <span class="keyword">constructor</span></span>() &#123;</span><br><span class="line"></span><br><span class="line">  init &#123;</span><br><span class="line">    sum++</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span> </span>&#123;</span><br><span class="line">      <span class="keyword">companion</span> <span class="keyword">object</span> &#123;</span><br><span class="line">        <span class="keyword">val</span> instance = StaticInnerSingleton()</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">fun</span> <span class="title">getInstance</span><span class="params">()</span></span>: StaticInnerSingleton &#123;</span><br><span class="line">      <span class="keyword">return</span> SingletonHolder.instance</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="枚举"><a href="#枚举" class="headerlink" title="枚举"></a>枚举</h3><p>《Effective Java》墙裂推荐！</p>
+<blockquote>
+<p>优点：目前最优雅，最简单，最安全的单例实现方式<br>缺点：这么好的方法，没什么人用</p>
+</blockquote>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created by mwu on 2018/9/10</span></span><br><span class="line"><span class="comment"> * 枚举类单例</span></span><br><span class="line"><span class="comment"> * 目前最优雅，最简单，最安全的单例实现方式</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">enum</span> <span class="class"><span class="keyword">class</span> <span class="title">EnumSingleton</span> </span>&#123;</span><br><span class="line">  INSTANCE;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">fun</span> <span class="title">whareverMethod</span><span class="params">()</span></span> &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>以上方法中，除了<code>枚举</code>外都会面临以下缺点：</p>
+<blockquote>
+<ol>
+<li>需要特殊处理序列化，否则反序列化时，会创建出新的实例</li>
+<li>可以用反射强行调用私有构造器，从而破坏单例</li>
+</ol>
+</blockquote>
+<p>而<code>枚举</code>的单例模式则不存在以上问题，因此被《Effective Java》墙裂推荐，所以以后写单例还是用<code>枚举</code>吧</p>
 
       
     </div>
@@ -490,6 +522,16 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/kotlin/" rel="tag"><i class="fa fa-tag"></i> kotlin</a>
+          
+            <a href="/tags/设计模式/" rel="tag"><i class="fa fa-tag"></i> 设计模式</a>
+          
+            <a href="/tags/单例模式/" rel="tag"><i class="fa fa-tag"></i> 单例模式</a>
+          
+        </div>
+      
 
       
       
@@ -499,15 +541,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/09/06/HexoGit/" rel="next" title="Hexo&Git搭建个人博客">
+                <i class="fa fa-chevron-left"></i> Hexo&Git搭建个人博客
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/06/HexoGit/" rel="prev" title="Hexo&Git搭建个人博客">
-                Hexo&Git搭建个人博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -559,8 +601,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -636,6 +687,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础设置"><span class="nav-number">1.</span> <span class="nav-text">基础设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#饿汉式"><span class="nav-number">2.</span> <span class="nav-text">饿汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#懒汉式"><span class="nav-number">3.</span> <span class="nav-text">懒汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步懒汉式"><span class="nav-number">4.</span> <span class="nav-text">同步懒汉式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双重检查"><span class="nav-number">5.</span> <span class="nav-text">双重检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态内部类"><span class="nav-number">6.</span> <span class="nav-text">静态内部类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#枚举"><span class="nav-number">7.</span> <span class="nav-text">枚举</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
